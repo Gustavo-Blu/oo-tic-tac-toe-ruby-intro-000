@@ -96,15 +96,37 @@ class TicTacToe
   end
 
   def over?
-
+    if won?(board) != false || draw?(board) || full?(board)
+      return true
+    else
+      return false
+    end
   end
 
   def winner
+    win = won?(board)
 
+    if win != false
+      place1 = win[0]
+
+      if board[place1] == "X"
+        return "X"
+      elsif board[place1] == "O"
+        return "O"
+      end
+
+    end
   end
 
   def play
-
+    until over?(board)
+      turn(board)
+    end
+    if winner(board) == "X" || winner(board) == "O"
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+      puts "Cat's Game!"
+    end
   end
 
   WIN_COMBINATIONS = [
